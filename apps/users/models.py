@@ -12,7 +12,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField('email address', unique=True)
     password = models.TextField()
     is_staff = models.BooleanField(default=False) # type: ignore
-    is_active = models.BooleanField(default=True) # type: ignore
+    is_active = models.BooleanField(default=False) # type: ignore
     date_joined = models.DateTimeField(default=timezone.now)
 
     USERNAME_FIELD = 'username'
