@@ -48,6 +48,3 @@ class PostViewSetTestCase(TestCase):
         response = list_view(request)
         self.assertEqual(response.status_code, 201) 
 
-    def test_edit(self):
-        pass
-
