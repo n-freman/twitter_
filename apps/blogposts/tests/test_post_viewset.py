@@ -1,9 +1,8 @@
-from django.test import TestCase
-from django.contrib.auth import get_user_model
-from rest_framework.test import APIRequestFactory
-
 from blogposts.models import Blog, Post
-from blogposts.views import PostViewSet 
+from blogposts.views import PostViewSet
+from django.contrib.auth import get_user_model
+from django.test import TestCase
+from rest_framework.test import APIRequestFactory
 
 User = get_user_model()
 

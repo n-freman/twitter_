@@ -1,6 +1,6 @@
-from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.db import models
 
 
 class Blog(models.Model):
@@ -12,7 +12,7 @@ class Blog(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=40)
+    title = models.CharField(max_length=40, null=False)
     content = models.CharField(max_length=140)
     creation_date = models.DateTimeField(
         auto_now_add=True

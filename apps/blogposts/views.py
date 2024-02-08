@@ -1,8 +1,7 @@
+from blogposts.models import Blog, Post
+from blogposts.serializers import BlogSerializer, PostSerializer
 from django.contrib.auth import get_user_model
 from rest_framework import viewsets
-
-from blogposts.serializers import BlogSerializer, PostSerializer
-from blogposts.models import Blog, Post
 
 
 class BlogViewSet(viewsets.ReadOnlyModelViewSet):

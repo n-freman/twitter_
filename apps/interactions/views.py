@@ -1,7 +1,6 @@
+from interactions.models import Follow, PostRead
+from interactions.serializers import FollowSerializer, PostReadSerializer
 from rest_framework import viewsets
-
-from interactions.serializers import PostReadSerializer, FollowSerializer
-from interactions.models import PostRead, Follow
 
 
 class PostReadViewSet(viewsets.ModelViewSet):

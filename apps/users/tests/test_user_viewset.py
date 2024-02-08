@@ -1,7 +1,6 @@
-from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.test import TestCase
 from rest_framework.test import APIRequestFactory
-
 from users.views import UserViewSet
 
 User = get_user_model()

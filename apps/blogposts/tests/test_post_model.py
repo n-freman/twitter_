@@ -1,10 +1,9 @@
 from datetime import datetime
 
-from django.test import TestCase
+from blogposts.models import Blog, Post
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-
-from blogposts.models import Post, Blog
+from django.test import TestCase
 
 User = get_user_model()
 

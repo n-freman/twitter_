@@ -1,7 +1,6 @@
+from blogposts.models import Blog, Post
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-
-from blogposts.models import Post, Blog
 
 User = get_user_model()
 

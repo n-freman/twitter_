@@ -1,9 +1,8 @@
-from django.test import TestCase
 from django.contrib.auth import get_user_model
-from rest_framework.test import APIRequestFactory
-
+from django.test import TestCase
 from interactions.models import Follow
 from interactions.views import FollowViewSet
+from rest_framework.test import APIRequestFactory
 
 User = get_user_model()
 
