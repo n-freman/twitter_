@@ -19,10 +19,6 @@ class BlogTestCase(TestCase):
             'hardPassword123!'
         )
 
-    def tearDown(self):
-        User.objects.all().delete()
-        Blog.objects.all().delete()
-
     def test_blog_created_on_user_create(self):
         '''
         Tests if blog object is created when
