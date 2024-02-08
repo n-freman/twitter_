@@ -5,6 +5,9 @@ from blogposts.models import Blog, Post
 
 
 class PostRead(models.Model):
+    '''
+    Model representing single reading of a post
+    '''
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
@@ -21,6 +24,9 @@ class PostRead(models.Model):
 
 
 class Follow(models.Model):
+    '''
+    Model represents following a blog
+    '''
     follower = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
