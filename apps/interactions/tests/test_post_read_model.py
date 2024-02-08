@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 
 from blogposts.models import Post
-from .models import PostRead
+from interactions.models import PostRead
 
 User = get_user_model()
 
@@ -38,8 +38,9 @@ class PostReadsTestCase(TestCase):
             user=user,
         )
         with self.assertRaises(ValidationError):
-            PostRead.objects.create(
+            post_read = PostRead(
                 post=post,
                 user=user,
             )
+            post_read.full_clean()
 
