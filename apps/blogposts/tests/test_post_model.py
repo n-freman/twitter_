@@ -40,11 +40,12 @@ class PostTestCase(TestCase):
         '''
         new_user = User.objects.get(username='ivan_ivanov')
         with self.assertRaises(ValidationError):
-            Post.objects.create(
+            new_post = Post(
                 title='Post title',
                 content='L'*141,
                 blog=new_user.blog
             )
+            new_post.full_clean()
 
     def test_post_creation_date(self):
         new_user = User.objects.get(username='ivan_ivanov')
