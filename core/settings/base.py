@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import sys
 from pathlib import Path
+from datetime import timedelta
 
 from dotenv import load_dotenv
 
@@ -137,3 +138,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+CELERY_BROKER_URL = os.getenv('REDIS_BROKER')
+CELERY_RESULT_BACKEND = os.getenv('REDIS_RESULT')
+CELERY_BEAT_SCHEDULE = {
+      'notify-every-24h': {
+        'task': 'interactions.tasks.notify_all_users',
+        'schedule': timedelta(seconds=10), # every day
+    },
+}
+
