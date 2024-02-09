@@ -4,6 +4,8 @@ Twitter clone / Test project
 
 ```bash
 docker-compose up
+docker exec -it configs-db-1 psql -U postgres -f /docker-entrypo
+int-initdb.d/init.sql
 ```
 
 ## How to dump fake data

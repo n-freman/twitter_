@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  api:
+    build: ..
+    command: bash -c "
+      python manage.py migrate &&
+      gunicorn --config ./configs/gunicorn_config.py core.wsgi:application"
+    restart: always
+    ports:
+      - 8000:8000
+
+  db:
+    image: postgres:15
+    volumes:
+      - ../scripts:/docker-entrypoint-initdb.d/
+
+  celery-worker:
+    build: ..
+    command: bash -c "
+      export DJANGO_SETTINGS_MODULE=core.settings &&
+      celery -A apps.interactions.celery worker --pool=solo"
+    environment:
+      - DJANGO_SETTINGS_MODUULE=core.settings
+    env_file:
+      - ../.env
+    depends_on:
+      - redis
+
+  celery-beat:
+    build: ..
+    command: bash -c "
+      export DJANGO_SETTINGS_MODULE=core.settings &&
+      celery -A apps.interactions.celery beat"
+    env_file:
+      - ../.env
+    depends_on:
+      - celery-worker
+
+  redis:
+    image: redis
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  scripts:
+
