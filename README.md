@@ -3,7 +3,7 @@ Twitter clone / Test project
 ## How to run
 
 ```bash
-docker-compose up
+docker-compose -f ./configs/docker-compose.yml up
 docker exec -it configs-db-1 psql -U postgres -f /docker-entrypo
 int-initdb.d/init.sql
 ```
