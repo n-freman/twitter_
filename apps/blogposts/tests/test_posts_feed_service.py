@@ -1,8 +1,7 @@
-from django.test import TestCase
-from django.contrib.auth import get_user_model
-
 from blogposts.models import Post
 from blogposts.services import PostsFeedService
+from django.contrib.auth import get_user_model
+from django.test import TestCase
 from interactions.models import Follow
 
 User = get_user_model()

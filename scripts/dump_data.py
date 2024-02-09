@@ -1,9 +1,8 @@
 import json
 
-from django.contrib.auth import get_user_model
-
-from interactions.models import Follow
 from blogposts.models import Post
+from django.contrib.auth import get_user_model
+from interactions.models import Follow
 
 User = get_user_model()
 

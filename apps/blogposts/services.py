@@ -1,6 +1,5 @@
-from django.db.models import Subquery
-
 from blogposts.models import Post
+from django.db.models import Subquery
 from interactions.models import Follow
 
 
@@ -13,5 +12,5 @@ class PostsFeedService:
         ).values('id')
         return Post.objects.filter(
             blog__follows__in=Subquery(user_follows)
-        )        
+        ).order_by('-creation_date')
 
