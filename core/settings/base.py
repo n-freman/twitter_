@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import sys
 from pathlib import Path
+from datetime import timedelta
 
 from dotenv import load_dotenv
 
@@ -84,8 +85,12 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("DB_NAME", "twitter"),
+        "USER": os.environ.get("DB_USER", "twitteradmin"),
+        "PASSWORD": os.environ.get("DB_PWD", "password123"),
+        "HOST": os.environ.get("DB_HOST", "db"),
+        "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
 
@@ -132,3 +137,18 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
+CELERY_BROKER_URL = os.getenv('REDIS_BROKER')
+CELERY_RESULT_BACKEND = os.getenv('REDIS_RESULT')
+CELERY_BEAT_SCHEDULE = {
+      'notify-every-24h': {
+        'task': 'interactions.tasks.notify_all_users',
+        'schedule': timedelta(seconds=10), # every day
+    },
+}
+

@@ -1,0 +1,4 @@
+FROM postgres:15
+
+RUN mkdir -p /docker-entrypoint-initdb.d
+COPY ../scripts/init.sql /docker-entrypoint-initdb.d/

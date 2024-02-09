@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from blogposts.urls import router as blogposts_router
+from blogposts.views import PostFeedView
 from django.contrib import admin
 from django.urls import include, path
 from interactions.urls import router as interactions_router
@@ -30,5 +31,6 @@ router.registry.extend(blogposts_router.registry)
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/posts-feed/<int:user_id>/', PostFeedView.as_view())
 ]
 
